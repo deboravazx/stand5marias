@@ -1,0 +1,330 @@
+/* Reset */
+*{box-sizing:border-box}
+html,body{height:100%}
+
+/* Layout & base */
+body{
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  margin:0;
+  background:#f4f6f8;
+  color:#122;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+}
+
+.container{
+  max-width:1100px;
+  margin:0 auto;
+  padding:0 16px;
+}
+
+/* Header / nav */
+.site-header{
+  background:hsl(198, 9%, 29%); 
+  color:#fff;
+}
+.site-header .container{
+  display:flex;
+  align-items:center;
+  gap:16px;
+  padding:12px 16px;
+}
+.logo img{display:block; height:48px; width:auto}
+
+/* Main nav */
+.main-nav ul{
+  display:flex;
+  gap:18px;
+  list-style:none;
+  margin:0;
+  padding:0;
+  align-items:center;
+}
+.main-nav a{
+  color:#fff;
+  text-decoration:none;
+  font-weight:600;
+  padding:8px 10px;
+  border-radius:6px;
+}
+.main-nav a:hover{background:rgba(255,255,255,0.08)}
+
+/* Hero */
+.hero{
+  padding:28px 0;
+  background:linear-gradient(180deg, #fff, #f7faf7);
+}
+.hero .container{display:grid;grid-template-columns:1fr;gap:20px;align-items:center}
+.hero h1{margin:0 0 8px;font-size:1.9rem}
+.hero p{margin:0 0 12px;color:#334}
+
+/* media for hero two-column layout on larger screens */
+@media(min-width:840px){
+  .hero .container{grid-template-columns: 1fr 1fr}
+}
+
+/* Destaques / grid */
+.grid{
+  display:grid;
+  gap:16px;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  margin-top:12px;
+}
+.card{
+  background:#fff;
+  border-radius:8px;
+  box-shadow:0 1px 6px rgba(18,34,40,0.06);
+  padding:12px;
+  overflow:hidden;
+  position:relative; /* adicionada para hover visual */
+  transform:translateZ(0); /* força renderização no GPU */
+  transition:transform .28s cubic-bezier(.2,.9,.3,1), box-shadow .28s ease;
+  cursor:default;
+}
+
+/* imagem */
+.card img{
+  display:block;
+  width:100%;
+  height:auto;
+  border-radius:6px;
+  transition:transform .35s cubic-bezier(.2,.9,.3,1), filter .25s ease;
+  will-change:transform;
+}
+
+/* efeito ao passar o mouse */
+.card:hover{
+  transform:translateY(-8px) scale(1.01);
+  box-shadow:0 10px 30px rgba(18,34,40,0.12);
+  cursor:pointer;
+}
+.card:hover img{
+  transform:scale(1.06) translateY(-4px) rotate(-0.5deg);
+  filter:brightness(.98);
+}
+
+/* foco por teclado (acessibilidade) */
+.card:focus-within,
+.card:focus{
+  outline:2px solid rgba(11,107,68,0.18);
+  outline-offset:4px;
+}
+
+/* reduz movimento se usuário preferir */
+@media (prefers-reduced-motion: reduce){
+  .card, .card img{
+    transition:none;
+    transform:none !important;
+  }
+}
+
+/* Serviços list */
+.servicos ul{
+  padding-left:1.1rem;
+  margin:8px 0 0;
+}
+
+/* Form */
+form{display:block;max-width:520px}
+input[type="text"],input[type="email"],input[type="tel"],textarea{
+  width:100%;
+  padding:10px 12px;
+  margin:6px 0 12px;
+  border:1px solid #d6dde1;
+  border-radius:6px;
+  background:#fff;
+  font:inherit;
+}
+button[type="submit"]{
+  background:hsl(198, 9%, 29%);
+  color:#fff;
+  border:none;
+  padding:10px 14px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600;
+}
+button[type="submit"]:hover{opacity:0.95}
+
+/* Footer */
+.site-footer{
+  background:hsl(198, 9%, 29%);
+  color:#fff;
+  padding:14px 0;
+  text-align:center;
+  font-size:0.9rem;
+}
+
+/* small utilities */
+a{color:inherit}
+img{max-width:100%;height:auto;display:block}
+
+/* Contact: form + image side-by-side */
+.contato .contact-grid{
+  display:grid;
+  grid-template-columns: 1fr 1fr;
+  gap:20px;
+  align-items:start;
+  margin-top:8px;
+}
+
+/* ensure form stays compact */
+.contact-form{
+  background: #fff;
+  padding:14px;
+  border-radius:8px;
+  box-shadow: 0 1px 6px rgba(18,34,40,0.04);
+}
+
+/* image area */
+.contact-image img{
+  width:100%;
+  height:100%;
+  max-height:360px;
+  object-fit:cover;
+  border-radius:8px;
+  display:block;
+  box-shadow: 0 6px 18px rgba(18,34,40,0.08);
+}
+
+/* stack on small screens */
+@media (max-width:840px){
+  .contato .contact-grid{
+    grid-template-columns: 1fr;
+  }
+  .contact-image img{max-height:240px}
+}
+
+/* Quem somos — forçar vídeo grande e texto em baixo */
+.qsomos{
+  padding:28px 0 8px;
+}
+.qsomos .qsomos-grid{
+  display:grid;
+  grid-template-columns: 1fr;     /* single column: video on top, text below */
+  gap:22px;
+  align-items:start;
+  margin-top:12px;
+}
+
+/* video responsivo maior */
+.video-wrap{
+  background:#000;
+  border-radius:10px;
+  overflow:hidden;
+  box-shadow:0 8px 28px rgba(2,18,23,0.08);
+  min-height:320px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+.video-wrap.large{min-height:520px;} /* usa classe large para vídeo maior */
+
+.video-wrap video{
+  width:100%;
+  height:100%;
+  max-height:900px;
+  display:block;
+  object-fit:cover;
+  background:#000;
+  border-radius:6px;
+}
+
+/* cartão da história fica abaixo com espaçamento adequado */
+.story-card{
+  background: linear-gradient(180deg,#ffffff, #fbfdfc);
+  border-radius:10px;
+  padding:18px;
+  box-shadow:0 6px 20px rgba(2,18,23,0.06);
+  line-height:1.6;
+  color:#112;
+  margin-top:0; /* já separado pelo gap do grid */
+}
+.story-card h3{margin-top:0;margin-bottom:8px;font-size:1.25rem;color:hsl(198, 9%, 29%)}
+.story-card p{margin:0 0 12px;font-size:0.98rem;color:#233}
+
+/* responsividade — mantém comportamento em ecrãs pequenos */
+@media (max-width:840px){
+  .video-wrap.large{min-height:320px}
+  .video-wrap video{max-height:520px}
+}
+
+/* reduz movimentos se preferido */
+@media (prefers-reduced-motion: reduce){
+  .video-wrap, .video-wrap video{transition:none}
+}
+
+/* Chevrolet gallery — fotos maiores, duas por linha */
+.gallery-grid{
+  display:grid;
+  gap:22px;
+  grid-template-columns: repeat(2, minmax(300px, 1fr)); /* 2 por linha, larguras maiores */
+  align-items:start;
+  margin-top:12px;
+}
+
+/* cartão - aumenta imagem para visual maior */
+.car-card{
+  padding:14px;
+  border-radius:12px;
+  background:#fff;
+  box-shadow:0 8px 24px rgba(2,18,23,0.06);
+}
+.car-card figure{margin:0 0 12px;border-radius:10px;overflow:hidden}
+.car-card img{
+  width:100%;
+  height:260px;             /* maior altura */
+  object-fit:cover;
+  display:block;
+  transition:transform .45s ease, filter .25s ease;
+  border-radius:8px;
+}
+.car-card h3{margin:0 0 8px;font-size:1.08rem;color:hsl(198, 9%, 29%)}
+.car-card p{margin:0;color:#445;font-size:0.98rem}
+
+/* hover / foco */
+.car-card:hover, .car-card:focus{
+  transform:translateY(-8px);
+  box-shadow:0 22px 48px rgba(2,18,23,0.12);
+}
+.car-card:hover img, .car-card:focus img{
+  transform:scale(1.06);
+  filter:brightness(.98);
+}
+
+/* responsividade: empilhar e ajustar tamanhos em ecrãs pequenos */
+@media (max-width:900px){
+  .gallery-grid{
+    grid-template-columns: 1fr; /* uma coluna em mobile */
+    gap:16px;
+  }
+  .car-card img{height:200px}
+}
+
+/* telas muito grandes: mantém duas por linha mas aumenta a altura */
+@media (min-width:1400px){
+  .gallery-grid{grid-template-columns: repeat(2, minmax(360px, 1fr));}
+  .car-card img{height:320px}
+}
+
+/* Tesla — hero específico */
+.tesla-hero .hero-media img{ border-radius:10px; box-shadow:0 10px 30px rgba(2,18,23,0.08); max-height:520px; object-fit:cover; }
+.tesla-hero .hero-text h1{color:#111;margin-top:0}
+.tesla-hero .hero-text p{color:#334}
+
+/* Reusa .gallery-grid / .car-card — garante imagens grandes duas por linha (se já não existir) */
+.gallery-grid{ display:grid; gap:20px; grid-template-columns: repeat(2, minmax(300px, 1fr)); }
+.car-card figure{ margin:0 0 10px; overflow:hidden; border-radius:10px; }
+.car-card img{ width:100%; height:260px; object-fit:cover; display:block; transition:transform .35s ease; }
+
+/* responsividade */
+@media (max-width:900px){
+  .gallery-grid{ grid-template-columns:1fr; }
+  .car-card img{ height:200px; }
+}
+.qsomos-grid{
+    pointer-events: none; 
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
